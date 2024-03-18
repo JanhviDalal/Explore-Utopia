@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Here</title>
+    <link rel="icon" href="./files/logo.png">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- Include your CSS stylesheets and other links here -->
+</head>
+<body class="register-body">
+    <nav>
+        <img src="./files/logo.png" class="logo" alt="Logo" title="FirstFlight Travels">
+        <ul class="navbar">
+            <li>
+                <a href="./index.html">Home</a>
+                <a href="./index.html#locations">Locations</a>
+                <a href="./index.html#package">Packages</a>
+                <a href="./about.html">About Us</a>
+                <a href="./contact.html">Contact Us</a>
+            </li>
+        </ul>
+    </nav>
+    <section class="registration">
+        <div class="register-form">
+            <h1>Register <span>Here</span></h1>
+            <form id="registrationForm" onsubmit="return validateForm()">
+                <input type="text" name="myname" placeholder="Name" required>
+                <div class="error" id="nameError"></div>
+                <input type="email" name="myemail" placeholder="Email-Id" required>
+                <div class="error" id="emailError"></div>
+                <input type="tel" name="myphone" placeholder="Phone No." required>
+                <div class="error" id="phoneError"></div>
+                <input type="number" name="myage" placeholder="Age" required>
+                <div class="error" id="ageError"></div>
+                <h4>Departure</h4>
+                <input type="date" name="departuredate" required>
+                <h4>Return</h4>
+                <input type="date" name="returndate" required>
+                <h4>Travel Destinations</h4>
+                <input type="checkbox" name="destination" value="Mumbai">Mumbai <br>
+                <input type="checkbox" name="destination" value="Istanbul"> Agra <br>
+                <input type="checkbox" name="destination" value="Paris"> Kedarnath <br>
+                <input type="checkbox" name="destination" value="Bali"> Amritsar <br>
+                <input type="checkbox" name="destination" value="Dubai"> Mysore <br>
+                <input type="checkbox" name="destination" value="Geneva"> Leh Ladakh <br>
+                <input type="checkbox" name="destination" value="Port Blair"> Varanasi <br>
+                <input type="checkbox" name="destination" value="Rome"> Jaipur <br>
+                <input type="checkbox" name="destination" value="Rome"> Kochi <br>
+                <input type="checkbox" name="destination" value="Rome"> Surat <br>
+                <input type="checkbox" name="destination" value="Rome"> Gwalior
+                <br><br>
+                <h4>Packages</h4>
+                <input type="radio" name="package" value="Bronze" required> Spiritual and Cultural Immersion <br>
+                <input type="radio" name="package" value="Silver"> Adventure Seeker's Package <br>
+                <input type="radio" name="package" value="Gold"> Historical and Architectural Enthusiast <br>
+                <input type="radio" name="package" value="Platinum"> Culinary and Food Lover's Journey <br>
+                <input type="radio" name="package" value="Platinum1"> Cultural Extravaganza <br>
+                <input type="radio" name="package" value="Platinum2"> Off-the-Beaten-Path Adventure
+                
+                <br><br>
+                <input type="checkbox" name="tandc" required> I accept the Terms & Conditions.
+                <div class="error" id="tandcError"></div>
+                <br><br>
+                <input type="submit" value="Submit" class="submitbtn">
+            </form>
+        </div>
+    </section>
+    <!-- Add your footer section here -->
+    <script>
+        function validateForm() {
+            var name = document.forms["registrationForm"]["myname"].value;
+            var email = document.forms["registrationForm"]["myemail"].value;
+            var phone = document.forms["registrationForm"]["myphone"].value;
+            var age = document.forms["registrationForm"]["myage"].value;
+            var tandc = document.forms["registrationForm"]["tandc"];
+
+            var nameError = document.getElementById("nameError");
+            var emailError = document.getElementById("emailError");
+            var phoneError = document.getElementById("phoneError");
+            var ageError = document.getElementById("ageError");
+            var tandcError = document.getElementById("tandcError");
+
+            var isValid = true;
+
+            // Name should not be empty
+            if (name.trim() === "") {
+                nameError.textContent = "Name is required";
+                isValid = false;
+            } else {
+                nameError.textContent = "";
+            }
+
+            // Email validation (you can use a more complex regex for better email validation)
+            if (!email.match(/^\S+@\S+\.\S+$/)) {
+                emailError.textContent = "Invalid email address";
+                isValid = false;
+            } else {
+                emailError.textContent = "";
+            }
+
+            // Phone should be a valid number
+            if (isNaN(phone) || phone.length !== 10) {
+                phoneError.textContent = "Invalid phone number";
+                isValid = false;
+            } else {
+                phoneError.textContent = "";
+            }
+
+            // Age should be a number and greater than 0
+            if (isNaN(age) || age <= 0) {
+                ageError.textContent = "Invalid age";
+                isValid = false;
+            } else {
+                ageError.textContent = "";
+            }
+
+            // Terms and Conditions should be accepted
+            if (!tandc.checked) {
+                tandcError.textContent = "You must accept the Terms & Conditions";
+                isValid = false;
+            } else {
+                tandcError.textContent = "";
+            }
+
+            return isValid;
+        }
+    </script>
+</body>
+</html>
